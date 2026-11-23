@@ -1,0 +1,3372 @@
+{
+ "models": {
+  "solver": "gpt-5.6-luna",
+  "challenger": "gpt-5.6-luna"
+ },
+ "calls": [
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "bridge-0",
+    "task": {
+     "task_id": "bridge",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       7
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       9
+      ],
+      [
+       7,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 5
+    },
+    "history": [],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 6
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "bridge-0",
+    "task": {
+     "task_id": "bridge",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       7
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       9
+      ],
+      [
+       7,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+     ],
+     "score": 0.5555555555555556,
+     "remaining_steps": 4
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 0
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "bridge-0",
+    "task": {
+     "task_id": "bridge",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       7
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       9
+      ],
+      [
+       7,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+     ],
+     "score": 0.6666666666666666,
+     "remaining_steps": 3
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 0,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 6,
+      "delta_edges": 1,
+      "delta_reward": 0.1111111111111111,
+      "completion_bonus": 0.0,
+      "reward": 0.1111111111111111,
+      "score": 0.6666666666666666,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 0
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 1
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "bridge-0",
+    "task": {
+     "task_id": "bridge",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       7
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       9
+      ],
+      [
+       7,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+     ],
+     "score": 0.7777777777777778,
+     "remaining_steps": 2
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 0,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 6,
+      "delta_edges": 1,
+      "delta_reward": 0.1111111111111111,
+      "completion_bonus": 0.0,
+      "reward": 0.1111111111111111,
+      "score": 0.6666666666666666,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 0
+      }
+     },
+     {
+      "valid": true,
+      "node": 1,
+      "before": [
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 6,
+      "satisfied_after": 7,
+      "delta_edges": 1,
+      "delta_reward": 0.1111111111111111,
+      "completion_bonus": 0.0,
+      "reward": 0.1111111111111111,
+      "score": 0.7777777777777778,
+      "remaining_steps_before": 3,
+      "raw_action": {
+       "node": 1
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 4
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "bridge-0",
+    "task": {
+     "task_id": "bridge",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       7
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       7
+      ],
+      [
+       6,
+       7
+      ],
+      [
+       6,
+       9
+      ],
+      [
+       7,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 1
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 0,
+      "before": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 6,
+      "delta_edges": 1,
+      "delta_reward": 0.1111111111111111,
+      "completion_bonus": 0.0,
+      "reward": 0.1111111111111111,
+      "score": 0.6666666666666666,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 0
+      }
+     },
+     {
+      "valid": true,
+      "node": 1,
+      "before": [
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 6,
+      "satisfied_after": 7,
+      "delta_edges": 1,
+      "delta_reward": 0.1111111111111111,
+      "completion_bonus": 0.0,
+      "reward": 0.1111111111111111,
+      "score": 0.7777777777777778,
+      "remaining_steps_before": 3,
+      "raw_action": {
+       "node": 1
+      }
+     },
+     {
+      "valid": true,
+      "node": 4,
+      "before": [
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "after": [
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "satisfied_before": 7,
+      "satisfied_after": 8,
+      "delta_edges": 1,
+      "delta_reward": 0.1111111111111111,
+      "completion_bonus": 0.0,
+      "reward": 0.1111111111111111,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 2,
+      "raw_action": {
+       "node": 4
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 9
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "chain-0",
+    "task": {
+     "task_id": "chain",
+     "edges": [
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       1,
+       7
+      ],
+      [
+       1,
+       8
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       3,
+       9
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       6,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 5
+    },
+    "history": [],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 3
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "chain-0",
+    "task": {
+     "task_id": "chain",
+     "edges": [
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       1,
+       7
+      ],
+      [
+       1,
+       8
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       3,
+       9
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       6,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 4
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 3
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 3
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "chain-0",
+    "task": {
+     "task_id": "chain",
+     "edges": [
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       1,
+       7
+      ],
+      [
+       1,
+       8
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       3,
+       9
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       6,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 3
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 3
+      }
+     },
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 3
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 3
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "chain-0",
+    "task": {
+     "task_id": "chain",
+     "edges": [
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       1,
+       7
+      ],
+      [
+       1,
+       8
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       3,
+       9
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       6,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 2
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 3
+      }
+     },
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 3
+      }
+     },
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 3,
+      "raw_action": {
+       "node": 3
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 7
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "chain-0",
+    "task": {
+     "task_id": "chain",
+     "edges": [
+      [
+       0,
+       2
+      ],
+      [
+       0,
+       5
+      ],
+      [
+       1,
+       7
+      ],
+      [
+       1,
+       8
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       7
+      ],
+      [
+       3,
+       9
+      ],
+      [
+       4,
+       5
+      ],
+      [
+       6,
+       8
+      ]
+     ],
+     "initial_colors": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 1
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 3
+      }
+     },
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 3
+      }
+     },
+     {
+      "valid": true,
+      "node": 3,
+      "before": [
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 3,
+      "raw_action": {
+       "node": 3
+      }
+     },
+     {
+      "valid": true,
+      "node": 7,
+      "before": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0
+      ],
+      "after": [
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 8,
+      "delta_edges": 0,
+      "delta_reward": 0.0,
+      "completion_bonus": 0.0,
+      "reward": 0.0,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 2,
+      "raw_action": {
+       "node": 7
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 1
+   }
+  },
+  {
+   "role": "challenger",
+   "input": {
+    "decision_id": "decision-0",
+    "planned_round": 1,
+    "round": 0,
+    "fixed_size": 4,
+    "summary": {
+     "bridge": {
+      "mean_score": 1.0,
+      "stratum": "high",
+      "tasks": 1,
+      "episodes": 1,
+      "success_rate": 1.0,
+      "invalid_actions": 0,
+      "undo_after_drop": 0,
+      "solved": 1,
+      "budget_exhausted": 0,
+      "invalid_action": 0,
+      "interrupted": 0,
+      "completed": 1,
+      "valid": 1,
+      "planned": 1
+     },
+     "chain": {
+      "mean_score": 0.8888888888888888,
+      "stratum": "middle",
+      "tasks": 1,
+      "episodes": 1,
+      "success_rate": 0.0,
+      "invalid_actions": 0,
+      "undo_after_drop": 0,
+      "solved": 0,
+      "budget_exhausted": 1,
+      "invalid_action": 0,
+      "interrupted": 0,
+      "completed": 1,
+      "valid": 1,
+      "planned": 1
+     }
+    },
+    "episodes": [
+     {
+      "episode_id": "bridge-0",
+      "task_id": "bridge",
+      "family": "bridge",
+      "size": 4,
+      "task": {
+       "task_id": "bridge",
+       "edges": [
+        [
+         0,
+         6
+        ],
+        [
+         1,
+         6
+        ],
+        [
+         2,
+         7
+        ],
+        [
+         3,
+         7
+        ],
+        [
+         4,
+         6
+        ],
+        [
+         5,
+         7
+        ],
+        [
+         6,
+         7
+        ],
+        [
+         6,
+         9
+        ],
+        [
+         7,
+         8
+        ]
+       ],
+       "initial_colors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+       ],
+       "budget": 5
+      },
+      "steps": [
+       {
+        "valid": true,
+        "node": 6,
+        "before": [
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         1,
+         0,
+         0
+        ],
+        "after": [
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 5,
+        "delta_edges": -3,
+        "delta_reward": -0.3333333333333333,
+        "completion_bonus": 0.0,
+        "reward": -0.3333333333333333,
+        "score": 0.5555555555555556,
+        "remaining_steps_before": 5,
+        "raw_action": {
+         "node": 6
+        }
+       },
+       {
+        "valid": true,
+        "node": 0,
+        "before": [
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "after": [
+         1,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "satisfied_before": 5,
+        "satisfied_after": 6,
+        "delta_edges": 1,
+        "delta_reward": 0.1111111111111111,
+        "completion_bonus": 0.0,
+        "reward": 0.1111111111111111,
+        "score": 0.6666666666666666,
+        "remaining_steps_before": 4,
+        "raw_action": {
+         "node": 0
+        }
+       },
+       {
+        "valid": true,
+        "node": 1,
+        "before": [
+         1,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "after": [
+         1,
+         1,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "satisfied_before": 6,
+        "satisfied_after": 7,
+        "delta_edges": 1,
+        "delta_reward": 0.1111111111111111,
+        "completion_bonus": 0.0,
+        "reward": 0.1111111111111111,
+        "score": 0.7777777777777778,
+        "remaining_steps_before": 3,
+        "raw_action": {
+         "node": 1
+        }
+       },
+       {
+        "valid": true,
+        "node": 4,
+        "before": [
+         1,
+         1,
+         0,
+         0,
+         0,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "after": [
+         1,
+         1,
+         0,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "satisfied_before": 7,
+        "satisfied_after": 8,
+        "delta_edges": 1,
+        "delta_reward": 0.1111111111111111,
+        "completion_bonus": 0.0,
+        "reward": 0.1111111111111111,
+        "score": 0.8888888888888888,
+        "remaining_steps_before": 2,
+        "raw_action": {
+         "node": 4
+        }
+       },
+       {
+        "valid": true,
+        "node": 9,
+        "before": [
+         1,
+         1,
+         0,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0,
+         0
+        ],
+        "after": [
+         1,
+         1,
+         0,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0,
+         1
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 9,
+        "delta_edges": 1,
+        "delta_reward": 0.1111111111111111,
+        "completion_bonus": 1.0,
+        "reward": 1.1111111111111112,
+        "score": 1.0,
+        "remaining_steps_before": 1,
+        "raw_action": {
+         "node": 9
+        }
+       }
+      ],
+      "status": "solved",
+      "final_score": 1.0,
+      "undo_after_drop": 0,
+      "group": "target",
+      "origin_task_id": "bridge",
+      "decision_id": null
+     },
+     {
+      "episode_id": "chain-0",
+      "task_id": "chain",
+      "family": "chain",
+      "size": 4,
+      "task": {
+       "task_id": "chain",
+       "edges": [
+        [
+         0,
+         2
+        ],
+        [
+         0,
+         5
+        ],
+        [
+         1,
+         7
+        ],
+        [
+         1,
+         8
+        ],
+        [
+         2,
+         9
+        ],
+        [
+         3,
+         7
+        ],
+        [
+         3,
+         9
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         6,
+         8
+        ]
+       ],
+       "initial_colors": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+       ],
+       "budget": 5
+      },
+      "steps": [
+       {
+        "valid": true,
+        "node": 3,
+        "before": [
+         0,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "after": [
+         0,
+         0,
+         1,
+         1,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 8,
+        "delta_edges": 0,
+        "delta_reward": 0.0,
+        "completion_bonus": 0.0,
+        "reward": 0.0,
+        "score": 0.8888888888888888,
+        "remaining_steps_before": 5,
+        "raw_action": {
+         "node": 3
+        }
+       },
+       {
+        "valid": true,
+        "node": 3,
+        "before": [
+         0,
+         0,
+         1,
+         1,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "after": [
+         0,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 8,
+        "delta_edges": 0,
+        "delta_reward": 0.0,
+        "completion_bonus": 0.0,
+        "reward": 0.0,
+        "score": 0.8888888888888888,
+        "remaining_steps_before": 4,
+        "raw_action": {
+         "node": 3
+        }
+       },
+       {
+        "valid": true,
+        "node": 3,
+        "before": [
+         0,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "after": [
+         0,
+         0,
+         1,
+         1,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 8,
+        "delta_edges": 0,
+        "delta_reward": 0.0,
+        "completion_bonus": 0.0,
+        "reward": 0.0,
+        "score": 0.8888888888888888,
+        "remaining_steps_before": 3,
+        "raw_action": {
+         "node": 3
+        }
+       },
+       {
+        "valid": true,
+        "node": 7,
+        "before": [
+         0,
+         0,
+         1,
+         1,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0
+        ],
+        "after": [
+         0,
+         0,
+         1,
+         1,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 8,
+        "delta_edges": 0,
+        "delta_reward": 0.0,
+        "completion_bonus": 0.0,
+        "reward": 0.0,
+        "score": 0.8888888888888888,
+        "remaining_steps_before": 2,
+        "raw_action": {
+         "node": 7
+        }
+       },
+       {
+        "valid": true,
+        "node": 1,
+        "before": [
+         0,
+         0,
+         1,
+         1,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0
+        ],
+        "after": [
+         0,
+         1,
+         1,
+         1,
+         0,
+         1,
+         0,
+         0,
+         1,
+         0
+        ],
+        "satisfied_before": 8,
+        "satisfied_after": 8,
+        "delta_edges": 0,
+        "delta_reward": 0.0,
+        "completion_bonus": 0.0,
+        "reward": 0.0,
+        "score": 0.8888888888888888,
+        "remaining_steps_before": 1,
+        "raw_action": {
+         "node": 1
+        }
+       }
+      ],
+      "status": "budget_exhausted",
+      "final_score": 0.8888888888888888,
+      "undo_after_drop": 0,
+      "group": "control",
+      "origin_task_id": "chain",
+      "decision_id": null
+     }
+    ],
+    "previous_proposal": {
+     "family": "bridge",
+     "size": 4,
+     "prediction": "undo_after_drop",
+     "hypothesis": "基线配对观察",
+     "evidence_episode_ids": []
+    },
+    "feedback": {
+     "decision_id": null,
+     "proposal": {
+      "family": "bridge",
+      "size": 4,
+      "prediction": "undo_after_drop",
+      "hypothesis": "基线配对观察",
+      "evidence_episode_ids": []
+     },
+     "prediction_results": {
+      "target": {
+       "hits": 0,
+       "episodes": 1,
+       "planned": 1,
+       "valid": 1,
+       "complete": true
+      },
+      "control": {
+       "hits": 0,
+       "episodes": 1,
+       "planned": 1,
+       "valid": 1,
+       "complete": true
+      }
+     },
+     "challenger_reward": null,
+     "coverage": {
+      "structure_key": "bridge:4",
+      "new_target_structure": true
+     },
+     "monitor": [
+      {
+       "solved": 1,
+       "budget_exhausted": 0,
+       "invalid_action": 0,
+       "interrupted": 0,
+       "completed": 1,
+       "valid": 1,
+       "success_rate": 1.0,
+       "solver_model": "gpt-5.6-luna",
+       "family": "bridge",
+       "size": 4,
+       "min_flips": 5,
+       "all_first_moves_drop": true,
+       "group": "target",
+       "planned": 1
+      },
+      {
+       "solved": 0,
+       "budget_exhausted": 1,
+       "invalid_action": 0,
+       "interrupted": 0,
+       "completed": 1,
+       "valid": 1,
+       "success_rate": 0.0,
+       "solver_model": "gpt-5.6-luna",
+       "family": "chain",
+       "size": 4,
+       "min_flips": 5,
+       "all_first_moves_drop": false,
+       "group": "control",
+       "planned": 1
+      }
+     ],
+     "retests": []
+    }
+   },
+   "output": {
+    "family": "bridge",
+    "size": 4,
+    "hypothesis": "在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。",
+    "prediction": "solved",
+    "evidence_episode_ids": [
+     "bridge-0"
+    ]
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "r1-q0-e0",
+    "task": {
+     "task_id": "r1-q0",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       8
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       6,
+       8
+      ],
+      [
+       7,
+       8
+      ],
+      [
+       8,
+       9
+      ]
+     ],
+     "initial_colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 5
+    },
+    "history": [],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 6
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "r1-q0-e0",
+    "task": {
+     "task_id": "r1-q0",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       8
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       6,
+       8
+      ],
+      [
+       7,
+       8
+      ],
+      [
+       8,
+       9
+      ]
+     ],
+     "initial_colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1
+     ],
+     "score": 0.5555555555555556,
+     "remaining_steps": 4
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 6
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "r1-q0-e0",
+    "task": {
+     "task_id": "r1-q0",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       8
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       6,
+       8
+      ],
+      [
+       7,
+       8
+      ],
+      [
+       8,
+       9
+      ]
+     ],
+     "initial_colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 3
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 8,
+      "delta_edges": 3,
+      "delta_reward": 0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": 0.3333333333333333,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 6
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 8
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "r1-q0-e0",
+    "task": {
+     "task_id": "r1-q0",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       8
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       6,
+       8
+      ],
+      [
+       7,
+       8
+      ],
+      [
+       8,
+       9
+      ]
+     ],
+     "initial_colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+     ],
+     "score": 0.5555555555555556,
+     "remaining_steps": 2
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 8,
+      "delta_edges": 3,
+      "delta_reward": 0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": 0.3333333333333333,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 8,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       1,
+       1
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 3,
+      "raw_action": {
+       "node": 8
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 8
+   }
+  },
+  {
+   "role": "solver",
+   "input": {
+    "episode_id": "r1-q0-e0",
+    "task": {
+     "task_id": "r1-q0",
+     "edges": [
+      [
+       0,
+       6
+      ],
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       8
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       5,
+       6
+      ],
+      [
+       6,
+       8
+      ],
+      [
+       7,
+       8
+      ],
+      [
+       8,
+       9
+      ]
+     ],
+     "initial_colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "budget": 5
+    },
+    "state": {
+     "colors": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+     ],
+     "score": 0.8888888888888888,
+     "remaining_steps": 1
+    },
+    "history": [
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 5,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 6,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 8,
+      "delta_edges": 3,
+      "delta_reward": 0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": 0.3333333333333333,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 4,
+      "raw_action": {
+       "node": 6
+      }
+     },
+     {
+      "valid": true,
+      "node": 8,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       1,
+       1
+      ],
+      "satisfied_before": 8,
+      "satisfied_after": 5,
+      "delta_edges": -3,
+      "delta_reward": -0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": -0.3333333333333333,
+      "score": 0.5555555555555556,
+      "remaining_steps_before": 3,
+      "raw_action": {
+       "node": 8
+      }
+     },
+     {
+      "valid": true,
+      "node": 8,
+      "before": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       1,
+       1
+      ],
+      "after": [
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1
+      ],
+      "satisfied_before": 5,
+      "satisfied_after": 8,
+      "delta_edges": 3,
+      "delta_reward": 0.3333333333333333,
+      "completion_bonus": 0.0,
+      "reward": 0.3333333333333333,
+      "score": 0.8888888888888888,
+      "remaining_steps_before": 2,
+      "raw_action": {
+       "node": 8
+      }
+     }
+    ],
+    "reward_contract": {
+     "completion_bonus": 1.0,
+     "gamma": 1.0
+    }
+   },
+   "output": {
+    "node": 0
+   }
+  }
+ ],
+ "proposal": {
+  "family": "bridge",
+  "size": 4,
+  "hypothesis": "在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。",
+  "prediction": "solved",
+  "evidence_episode_ids": [
+   "bridge-0"
+  ]
+ },
+ "new_episode": {
+  "episode_id": "r1-q0-e0",
+  "task_id": "r1-q0",
+  "family": "bridge",
+  "size": 4,
+  "task": {
+   "task_id": "r1-q0",
+   "edges": [
+    [
+     0,
+     6
+    ],
+    [
+     1,
+     6
+    ],
+    [
+     2,
+     8
+    ],
+    [
+     3,
+     8
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     8
+    ],
+    [
+     7,
+     8
+    ],
+    [
+     8,
+     9
+    ]
+   ],
+   "initial_colors": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1
+   ],
+   "budget": 5
+  },
+  "steps": [
+   {
+    "valid": true,
+    "node": 6,
+    "before": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "after": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "satisfied_before": 8,
+    "satisfied_after": 5,
+    "delta_edges": -3,
+    "delta_reward": -0.3333333333333333,
+    "completion_bonus": 0.0,
+    "reward": -0.3333333333333333,
+    "score": 0.5555555555555556,
+    "remaining_steps_before": 5,
+    "raw_action": {
+     "node": 6
+    }
+   },
+   {
+    "valid": true,
+    "node": 6,
+    "before": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "after": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "satisfied_before": 5,
+    "satisfied_after": 8,
+    "delta_edges": 3,
+    "delta_reward": 0.3333333333333333,
+    "completion_bonus": 0.0,
+    "reward": 0.3333333333333333,
+    "score": 0.8888888888888888,
+    "remaining_steps_before": 4,
+    "raw_action": {
+     "node": 6
+    }
+   },
+   {
+    "valid": true,
+    "node": 8,
+    "before": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "after": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "satisfied_before": 8,
+    "satisfied_after": 5,
+    "delta_edges": -3,
+    "delta_reward": -0.3333333333333333,
+    "completion_bonus": 0.0,
+    "reward": -0.3333333333333333,
+    "score": 0.5555555555555556,
+    "remaining_steps_before": 3,
+    "raw_action": {
+     "node": 8
+    }
+   },
+   {
+    "valid": true,
+    "node": 8,
+    "before": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "after": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "satisfied_before": 5,
+    "satisfied_after": 8,
+    "delta_edges": 3,
+    "delta_reward": 0.3333333333333333,
+    "completion_bonus": 0.0,
+    "reward": 0.3333333333333333,
+    "score": 0.8888888888888888,
+    "remaining_steps_before": 2,
+    "raw_action": {
+     "node": 8
+    }
+   },
+   {
+    "valid": true,
+    "node": 0,
+    "before": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "after": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "satisfied_before": 8,
+    "satisfied_after": 7,
+    "delta_edges": -1,
+    "delta_reward": -0.1111111111111111,
+    "completion_bonus": 0.0,
+    "reward": -0.1111111111111111,
+    "score": 0.7777777777777778,
+    "remaining_steps_before": 1,
+    "raw_action": {
+     "node": 0
+    }
+   }
+  ],
+  "status": "budget_exhausted",
+  "final_score": 0.7777777777777778,
+  "undo_after_drop": 2
+ }
+}

@@ -1,0 +1,21 @@
+# 默认使用本地替身完成算法链路；改成 api 后调用配置的模型。
+[run]
+schedule_mode = "sync" # 可选 async，由后台队列备题；至少三轮才有重叠。
+historical_tasks_per_round = 0 # 每轮额外重测的历史原题数。
+historical_start_round = 1 # 轮号从0开始，达到本轮后每批加入重测。
+mode = "offline"
+seed = 42
+rounds = 2
+rollouts_per_task = 2
+initial_size = 2
+completion_bonus = 1.0 # 首次成功时加分，不折扣，规模在运行内固定。
+
+# 地址填写到 /v1 层级，两个角色可以使用同一个模型。
+[api]
+base_url = "https://api.openai.com/v1"
+solver_model = "SET_SOLVER_MODEL"
+challenger_model = "SET_CHALLENGER_MODEL"
+key_env = "BICOLOR_API_KEY"
+max_calls = 64
+max_completion_tokens = 1024
+timeout_seconds = 60

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Challenger 出题，Solver 解题</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f3ed;color:#1b302d;font:16px/1.6 "PingFang SC","Microsoft YaHei",system-ui,sans-serif}main{max-width:1160px;margin:auto;padding:28px clamp(14px,4vw,52px)}header,.head,.controls,.legend,.track,.score{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header{justify-content:space-between;border-bottom:1px solid #b8c7bc;padding-bottom:20px}h1,h2,h3,p{margin:0}h1{font-size:clamp(23px,3vw,35px);letter-spacing:-.06em}header small,.muted{color:#52665c}.track{margin:22px 0 14px;gap:4px}.track button{flex:1;border-bottom:3px solid #cbd4c9;border-radius:0;background:none;padding:8px 4px;color:#506258}.track button.active{border-color:#027959;color:#005a42;font-weight:800}.stage{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(245px,1fr);background:white;border-radius:18px;overflow:hidden;border:1px solid #ccd4c9}.board{padding:22px;background:#102d29;color:#e2f2e8;min-width:0}.head{justify-content:space-between}.head small{font:13px monospace;color:#b5d2c7}.art{width:100%;background-image:radial-gradient(#2d4943 1px,transparent 1px);background-size:17px 17px;border-radius:10px;display:block;margin:14px auto 10px}.legend{font-size:12px;color:#d1e5db}.legend b{font:700 12px monospace;border-radius:20px;padding:3px 7px;color:#182c28}.side{padding:24px;display:flex;flex-direction:column;gap:14px}.side h2{font-size:24px;line-height:1.35}.side p{min-height:4.8em}.score{border-top:1px solid #d5dfd5;padding-top:12px;justify-content:space-between}.score span{font-size:12px;color:#5e6a60;display:block}.score strong{font:600 23px ui-monospace,monospace}.moves{display:flex;gap:5px;align-items:center}.moves i{font:500 15px monospace;background:#edf1eb;border-radius:6px;padding:5px 8px}.moves i:last-child{background:#c8eedd}.controls{margin:10px 0;gap:8px}button,select{font:inherit;color:inherit;cursor:pointer;border:1px solid #c2cec4;background:white;border-radius:8px;padding:7px 12px}button:hover{background:#dfeee4}button:disabled{opacity:.35;cursor:default}.play{background:#00684f;color:white;min-width:96px}.play:hover{background:#00553f}input{flex:1;min-width:95px;accent-color:#007655}output{font:14px monospace}.foot{border-top:1px solid #cbd4ca;padding-top:12px;color:#465d51;font-size:14px}.foot a{color:#00684f}.ring{transform-box:fill-box;transform-origin:center;animation:pulse 1s ease-out}.phase{animation:enter .46s ease-out}@keyframes pulse{from{transform:scale(.65);opacity:0}40%{opacity:1}to{transform:scale(1)}}@keyframes enter{from{opacity:.25;transform:translateY(5px)}}@media(max-width:720px){.stage{grid-template-columns:1fr}.side{padding:16px;gap:8px}.side p{min-height:0}.board{padding:14px}.track button{font-size:13px;min-width:28%}.score{justify-content:flex-start;gap:24px}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+[hidden]{display:none!important}.track{display:grid;grid-template-columns:repeat(10,minmax(0,1fr))}.track button{font-size:14px}.side p{overflow-wrap:anywhere}.evidence{margin:0;border-left:3px solid #4b9f83;padding:7px 12px;background:#f2f7f1;color:#345448;font-size:14px}.moving-dot{animation:carry 1.8s ease-in-out infinite}@keyframes carry{0%{transform:translateX(0);opacity:0}20%{opacity:1}85%{opacity:1}100%{transform:translateX(82px);opacity:0}}@media(max-width:800px){.track{grid-template-columns:repeat(3,1fr)}}@media(prefers-reduced-motion:reduce){.moving-dot{animation:none}}
+.detail-title{font-size:18px;margin:0 0 7px}.intro{max-width:100%;margin:14px 0 0}.intro strong{color:#005c46}.rules{margin:14px 0 0;padding:10px 16px;background:white;border:1px solid #c6d2c7;border-radius:10px}.rules summary{cursor:pointer;font-weight:650}.rules p{margin:.5em 0}.score{align-items:flex-start;gap:10px}.score strong{font-size:20px}.score span{max-width:12em}.score strong small{font:inherit}.side{gap:10px}.track{margin-top:16px}.foot{line-height:1.7}.legend b{white-space:nowrap}
+</style>
+<main><header><h1>Challenger 出题，Solver 解题</h1><small>真实 API 记录　/　gpt-5.6-luna</small></header>
+<p class="intro">出题方看解题方做过的题，寻找一种会反复出现的错法，再用新题检验它。先看两道种子题，然后跟着两次真实挑战走完“找线索 → 出题 → 解题 → 判分”。上图看消息传给谁，下图看哪一步支持或推翻了预测。</p>
+<nav class="track" id="tabs" aria-label="跳转到阶段"></nav>
+<style>
+.exchange{margin:10px 0;padding:14px clamp(10px,2vw,22px) 12px;border:1px solid #c5d3c8;border-radius:16px;background:#fdfefb;color:#193c32}
+.exchange h2{font-size:18px;line-height:1.25;margin:0}
+.exchange-diagram{position:relative;width:100%;height:150px;isolation:isolate}
+.exchange-wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.exchange-wire path{fill:none;stroke:#9aada4;stroke-width:1.5;vector-effect:non-scaling-stroke;marker-end:url(#exchange-arrow-idle)}
+.exchange-wire .exchange-signal{display:none;marker-end:none}
+.exchange-wire.active path{stroke:#007553;stroke-width:4;marker-end:url(#exchange-arrow-live)}
+.exchange-wire.active .exchange-signal{display:block;stroke:white;stroke-width:2;stroke-dasharray:2 13;stroke-linecap:round;marker-end:none;animation:exchange-travel 1s linear infinite}
+@keyframes exchange-travel{to{stroke-dashoffset:-30}}
+.exchange-node{position:absolute;transform:translate(-50%,-50%);width:22%;min-height:54px;text-align:center;display:grid;align-content:center;line-height:1.3;border:1px solid #aabeb0;border-radius:10px;background:#f2f6ef;color:#304e41;padding:4px}
+.exchange-node b{font-size:clamp(15px,2.3vw,20px)}
+.exchange-node small{display:block;font:12px/1.35 ui-monospace,monospace;color:#486252}
+.exchange-node[data-node="challenger"]{left:13%;top:50%}
+.exchange-node[data-node="solver"]{left:87%;top:50%}
+.exchange-node.engine{width:19%;min-height:38px;left:50%;background:#f9faf6}
+.exchange-node.engine b{font-size:15px}
+.exchange-node[data-node="generator"]{top:25%}
+.exchange-node[data-node="verifier"]{top:75%}
+.exchange-node.receiving{background:#d6f4e6;border-color:#00865c}
+.exchange-status{display:flex;align-items:baseline;gap:8px 16px;flex-wrap:wrap;border-top:1px solid #d8e3d9;padding-top:7px;line-height:1.45}
+.exchange-status b{color:#006749;font-size:15px}
+.exchange-status span{font-size:14px;color:#324e40}
+@media(max-width:720px) and (min-height:650px){.exchange{position:sticky;top:0;z-index:3;box-shadow:0 3px 8px #102d2912}}
+@media(max-width:520px){.exchange-diagram{height:116px}.exchange-node{min-height:44px}.exchange-node.engine{min-height:27px}.exchange-node.engine b{font-size:13px}.exchange-node small{font-size:10px}.exchange-status{display:grid;gap:3px}}
+@media(prefers-reduced-motion:reduce){.exchange-wire.active .exchange-signal{animation:none}}
+</style>
+<section class="exchange" aria-labelledby="exchange-title">
+<h2 id="exchange-title">上图 · 谁正在把什么交给谁？</h2>
+<div class="exchange-diagram">
+<svg class="exchange-wires" viewBox="0 0 1000 180" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<marker id="exchange-arrow-idle" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 11 6 1 11 4 6Z" fill="#8da298"/></marker>
+<marker id="exchange-arrow-live" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="17" markerHeight="15" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1 11 6 1 11 4 6Z" fill="#007553"/></marker>
+</defs>
+<g class="exchange-wire" data-route="proposal"><path d="M240 77 C302 77 330 45 402 45"/></g>
+<g class="exchange-wire" data-route="deliver"><path d="M595 45 C671 45 690 75 757 75"/></g>
+<g class="exchange-wire" data-route="action"><path d="M760 90 C688 90 664 124 598 124"/></g>
+<g class="exchange-wire" data-route="score"><path d="M595 146 C688 146 693 111 757 111"/></g>
+<g class="exchange-wire" data-route="feedback"><path d="M405 135 C334 135 301 103 243 103"/></g>
+</svg>
+<div class="exchange-node" data-node="challenger"><b>出题方</b><small>Challenger</small></div>
+<div class="exchange-node engine" data-node="generator"><b>题目生成器</b></div>
+<div class="exchange-node" data-node="solver"><b>解题方</b><small>Solver</small></div>
+<div class="exchange-node engine" data-node="verifier"><b>验证器</b></div>
+</div>
+<div class="exchange-status" role="status"><b id="exchange-direction"></b><span id="exchange-payload"></span></div>
+</section>
+<script>
+(() => {
+  const routes = {
+    seed:['deliver','题目生成器 → 解题方','solver'],
+    proposal:['proposal','出题方 → 题目生成器','generator'],
+    deliver:['deliver','题目生成器 → 解题方','solver'],
+    action:['action','解题方 → 验证器','verifier'],
+    score:['score','验证器 → 解题方','solver'],
+    feedback:['feedback','验证器 → 出题方','challenger']
+  };
+  const wires = document.querySelectorAll('.exchange-wire');
+  const nodes = document.querySelectorAll('.exchange-node');
+  for (const wire of wires) {
+    const signal = wire.querySelector('path').cloneNode(false);
+    signal.setAttribute('class','exchange-signal');
+    wire.append(signal);
+  }
+  window.showTransfer = (route, payload) => {
+    const [wireKey, direction, receiver] = routes[route];
+    for (const wire of wires) wire.classList.toggle('active', wire.dataset.route === wireKey);
+    for (const node of nodes) node.classList.toggle('receiving',node.dataset.node === receiver);
+    document.getElementById('exchange-direction').textContent = direction;
+    document.getElementById('exchange-payload').textContent = payload;
+  };
+})();
+</script>
+
+<div class="controls"><button class="play" id="play"></button><button id="back" aria-label="上一步">←</button><button id="next" aria-label="下一步">→</button><button id="read-scene" hidden type="button">听本幕讲解</button><input id="seek" type="range" min="0" value="0" aria-label="回放进度"><output id="count"></output><select id="speed" aria-label="播放速度"><option value="2900">1×</option><option value="1450">2×</option><option value="7000">慢速</option></select></div>
+<h2 class="detail-title">下图 · 这条消息里的题目与轨迹</h2>
+<section class="stage" aria-label="当前消息对应的真实题面和轨迹"><div class="board"><div class="head"><h3 id="boardTitle"></h3><small id="who"></small></div><svg class="art" id="graph" viewBox="0 0 590 286" role="img" aria-label="题图与节点状态"></svg>
+<div class="legend"><b style="background:#98ecd3">0</b><b style="background:#ffce81">1</b> 两种颜色　 <span style="color:#ffa18e">┄ 两端同色，尚未配对</span>　 ◎ 本步选中的点</div></div>
+<div class="side" aria-live="polite"><small class="muted" id="phase"></small><h2 id="title"></h2><p id="story"></p><blockquote class="evidence" id="hypothesis" hidden></blockquote><div class="score" id="score"></div><div id="moves" class="moves"></div></div></section>
+
+<details class="rules"><summary>两边怎样拿分？</summary>
+<p><b>解题方</b>每次只能把一个圆点换成另一种颜色。每条线两端颜色不同，就算这条线配对了。每题有九条线，每多配对一条得 1/9 分，每少一条扣 1/9 分。第一次九条全对，再得 1 分。开局已配对的八条线不计入奖励。</p>
+<p><b>出题方</b>挑的题要有解。这两次挑战各考一道目标题。对手五步用完还没解开，出题方就得 1 分。对手解开就得 0 分。多题一起考时，挑战分按有效作答中没解开的比例计算。预测是否说中另记一次，不从挑战分中扣分。</p>
+<p><b>它真的抓住了弱点吗？</b> 如果预先说的是“掉分后马上翻回去”，还可以比较这种行为在所选题和同规模对照题上各有多常见。两组发生比例之差是诊断分。第一份预测只猜输赢，诊断分不适用。第二份预测了具体动作，但本轮只解了一道目标题，缺少同期对照。单题可以判预测是否命中，诊断分还算不出。</p></details>
+<details class="rules"><summary>第二次作答的采样记录</summary><p>五步动作都来自同一条作答轨迹。首步沿用此前已执行的回答。第四步有一次输出截断，未产生有效动作；保留前三步后继续，第四、五步的输出上限从 1024 个 token 调到 4096 个。两轮的输出预算因此有差异。</p></details>
+<div class="foot">空格播放或暂停，方向键逐步查看。图中数字是节点编号，节点填色表示二值状态。<br>记录来源　<a href="../examples/targeted-case.json">基线与首次提案</a> · <a href="../examples/feedback-handoff.json">反馈回流与第二次出题</a> · <a href="../examples/second-outcome.json">第二次完整作答与结算</a> · <a href="../README.md">项目说明</a></div></main>
+<script id="record" type="application/json">{"episodes": [{"episode_id": "bridge-0", "task_id": "bridge", "family": "bridge", "size": 4, "task": {"task_id": "bridge", "edges": [[0, 6], [1, 6], [2, 7], [3, 7], [4, 6], [5, 7], [6, 7], [6, 9], [7, 8]], "initial_colors": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0], "budget": 5}, "steps": [{"valid": true, "node": 6, "before": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0], "after": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], "satisfied_before": 8, "satisfied_after": 5, "delta_edges": -3, "delta_reward": -0.3333333333333333, "completion_bonus": 0.0, "reward": -0.3333333333333333, "score": 0.5555555555555556, "remaining_steps_before": 5, "raw_action": {"node": 6}}, {"valid": true, "node": 0, "before": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], "after": [1, 0, 0, 0, 0, 0, 0, 1, 0, 0], "satisfied_before": 5, "satisfied_after": 6, "delta_edges": 1, "delta_reward": 0.1111111111111111, "completion_bonus": 0.0, "reward": 0.1111111111111111, "score": 0.6666666666666666, "remaining_steps_before": 4, "raw_action": {"node": 0}}, {"valid": true, "node": 1, "before": [1, 0, 0, 0, 0, 0, 0, 1, 0, 0], "after": [1, 1, 0, 0, 0, 0, 0, 1, 0, 0], "satisfied_before": 6, "satisfied_after": 7, "delta_edges": 1, "delta_reward": 0.1111111111111111, "completion_bonus": 0.0, "reward": 0.1111111111111111, "score": 0.7777777777777778, "remaining_steps_before": 3, "raw_action": {"node": 1}}, {"valid": true, "node": 4, "before": [1, 1, 0, 0, 0, 0, 0, 1, 0, 0], "after": [1, 1, 0, 0, 1, 0, 0, 1, 0, 0], "satisfied_before": 7, "satisfied_after": 8, "delta_edges": 1, "delta_reward": 0.1111111111111111, "completion_bonus": 0.0, "reward": 0.1111111111111111, "score": 0.8888888888888888, "remaining_steps_before": 2, "raw_action": {"node": 4}}, {"valid": true, "node": 9, "before": [1, 1, 0, 0, 1, 0, 0, 1, 0, 0], "after": [1, 1, 0, 0, 1, 0, 0, 1, 0, 1], "satisfied_before": 8, "satisfied_after": 9, "delta_edges": 1, "delta_reward": 0.1111111111111111, "completion_bonus": 1.0, "reward": 1.1111111111111112, "score": 1.0, "remaining_steps_before": 1, "raw_action": {"node": 9}}], "status": "solved", "final_score": 1.0, "undo_after_drop": 0, "group": "target", "origin_task_id": "bridge", "decision_id": null}, {"episode_id": "chain-0", "task_id": "chain", "family": "chain", "size": 4, "task": {"task_id": "chain", "edges": [[0, 2], [0, 5], [1, 7], [1, 8], [2, 9], [3, 7], [3, 9], [4, 5], [6, 8]], "initial_colors": [0, 0, 1, 0, 0, 1, 0, 1, 1, 0], "budget": 5}, "steps": [{"valid": true, "node": 3, "before": [0, 0, 1, 0, 0, 1, 0, 1, 1, 0], "after": [0, 0, 1, 1, 0, 1, 0, 1, 1, 0], "satisfied_before": 8, "satisfied_after": 8, "delta_edges": 0, "delta_reward": 0.0, "completion_bonus": 0.0, "reward": 0.0, "score": 0.8888888888888888, "remaining_steps_before": 5, "raw_action": {"node": 3}}, {"valid": true, "node": 3, "before": [0, 0, 1, 1, 0, 1, 0, 1, 1, 0], "after": [0, 0, 1, 0, 0, 1, 0, 1, 1, 0], "satisfied_before": 8, "satisfied_after": 8, "delta_edges": 0, "delta_reward": 0.0, "completion_bonus": 0.0, "reward": 0.0, "score": 0.8888888888888888, "remaining_steps_before": 4, "raw_action": {"node": 3}}, {"valid": true, "node": 3, "before": [0, 0, 1, 0, 0, 1, 0, 1, 1, 0], "after": [0, 0, 1, 1, 0, 1, 0, 1, 1, 0], "satisfied_before": 8, "satisfied_after": 8, "delta_edges": 0, "delta_reward": 0.0, "completion_bonus": 0.0, "reward": 0.0, "score": 0.8888888888888888, "remaining_steps_before": 3, "raw_action": {"node": 3}}, {"valid": true, "node": 7, "before": [0, 0, 1, 1, 0, 1, 0, 1, 1, 0], "after": [0, 0, 1, 1, 0, 1, 0, 0, 1, 0], "satisfied_before": 8, "satisfied_after": 8, "delta_edges": 0, "delta_reward": 0.0, "completion_bonus": 0.0, "reward": 0.0, "score": 0.8888888888888888, "remaining_steps_before": 2, "raw_action": {"node": 7}}, {"valid": true, "node": 1, "before": [0, 0, 1, 1, 0, 1, 0, 0, 1, 0], "after": [0, 1, 1, 1, 0, 1, 0, 0, 1, 0], "satisfied_before": 8, "satisfied_after": 8, "delta_edges": 0, "delta_reward": 0.0, "completion_bonus": 0.0, "reward": 0.0, "score": 0.8888888888888888, "remaining_steps_before": 1, "raw_action": {"node": 1}}], "status": "budget_exhausted", "final_score": 0.8888888888888888, "undo_after_drop": 0, "group": "control", "origin_task_id": "chain", "decision_id": null}, {"episode_id": "r1-q0-e0", "task_id": "r1-q0", "family": "bridge", "size": 4, "task": {"task_id": "r1-q0", "edges": [[0, 6], [1, 6], [2, 8], [3, 8], [4, 6], [5, 6], [6, 8], [7, 8], [8, 9]], "initial_colors": [1, 1, 1, 1, 1, 1, 0, 1, 0, 1], "budget": 5}, "steps": [{"valid": true, "node": 6, "before": [1, 1, 1, 1, 1, 1, 0, 1, 0, 1], "after": [1, 1, 1, 1, 1, 1, 1, 1, 0, 1], "satisfied_before": 8, "satisfied_after": 5, "delta_edges": -3, "delta_reward": -0.3333333333333333, "completion_bonus": 0.0, "reward": -0.3333333333333333, "score": 0.5555555555555556, "remaining_steps_before": 5, "raw_action": {"node": 6}}, {"valid": true, "node": 6, "before": [1, 1, 1, 1, 1, 1, 1, 1, 0, 1], "after": [1, 1, 1, 1, 1, 1, 0, 1, 0, 1], "satisfied_before": 5, "satisfied_after": 8, "delta_edges": 3, "delta_reward": 0.3333333333333333, "completion_bonus": 0.0, "reward": 0.3333333333333333, "score": 0.8888888888888888, "remaining_steps_before": 4, "raw_action": {"node": 6}}, {"valid": true, "node": 8, "before": [1, 1, 1, 1, 1, 1, 0, 1, 0, 1], "after": [1, 1, 1, 1, 1, 1, 0, 1, 1, 1], "satisfied_before": 8, "satisfied_after": 5, "delta_edges": -3, "delta_reward": -0.3333333333333333, "completion_bonus": 0.0, "reward": -0.3333333333333333, "score": 0.5555555555555556, "remaining_steps_before": 3, "raw_action": {"node": 8}}, {"valid": true, "node": 8, "before": [1, 1, 1, 1, 1, 1, 0, 1, 1, 1], "after": [1, 1, 1, 1, 1, 1, 0, 1, 0, 1], "satisfied_before": 5, "satisfied_after": 8, "delta_edges": 3, "delta_reward": 0.3333333333333333, "completion_bonus": 0.0, "reward": 0.3333333333333333, "score": 0.8888888888888888, "remaining_steps_before": 2, "raw_action": {"node": 8}}, {"valid": true, "node": 0, "before": [1, 1, 1, 1, 1, 1, 0, 1, 0, 1], "after": [0, 1, 1, 1, 1, 1, 0, 1, 0, 1], "satisfied_before": 8, "satisfied_after": 7, "delta_edges": -1, "delta_reward": -0.1111111111111111, "completion_bonus": 0.0, "reward": -0.1111111111111111, "score": 0.7777777777777778, "remaining_steps_before": 1, "raw_action": {"node": 0}}], "status": "budget_exhausted", "final_score": 0.7777777777777778, "undo_after_drop": 2}], "proposal": {"family": "bridge", "size": 4, "hypothesis": "在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。", "prediction": "solved", "evidence_episode_ids": ["bridge-0"]}}</script>
+<script id="handoff" type="application/json">{"challenger":{"role":"challenger","input":{"decision_id":"decision-1","planned_round":2,"round":1,"fixed_size":4,"summary":{"bridge":{"mean_score":0.7777777777777778,"stratum":"middle","tasks":1,"episodes":1,"success_rate":0.0,"invalid_actions":0,"undo_after_drop":2,"solved":0,"budget_exhausted":1,"invalid_action":0,"interrupted":0,"completed":1,"valid":1,"planned":1}},"episodes":[{"episode_id":"r1-q0-e0","task_id":"r1-q0","family":"bridge","size":4,"task":{"task_id":"r1-q0","edges":[[0,6],[1,6],[2,8],[3,8],[4,6],[5,6],[6,8],[7,8],[8,9]],"initial_colors":[1,1,1,1,1,1,0,1,0,1],"budget":5},"steps":[{"valid":true,"node":6,"before":[1,1,1,1,1,1,0,1,0,1],"after":[1,1,1,1,1,1,1,1,0,1],"satisfied_before":8,"satisfied_after":5,"delta_edges":-3,"delta_reward":-0.3333333333333333,"completion_bonus":0.0,"reward":-0.3333333333333333,"score":0.5555555555555556,"remaining_steps_before":5,"raw_action":{"node":6}},{"valid":true,"node":6,"before":[1,1,1,1,1,1,1,1,0,1],"after":[1,1,1,1,1,1,0,1,0,1],"satisfied_before":5,"satisfied_after":8,"delta_edges":3,"delta_reward":0.3333333333333333,"completion_bonus":0.0,"reward":0.3333333333333333,"score":0.8888888888888888,"remaining_steps_before":4,"raw_action":{"node":6}},{"valid":true,"node":8,"before":[1,1,1,1,1,1,0,1,0,1],"after":[1,1,1,1,1,1,0,1,1,1],"satisfied_before":8,"satisfied_after":5,"delta_edges":-3,"delta_reward":-0.3333333333333333,"completion_bonus":0.0,"reward":-0.3333333333333333,"score":0.5555555555555556,"remaining_steps_before":3,"raw_action":{"node":8}},{"valid":true,"node":8,"before":[1,1,1,1,1,1,0,1,1,1],"after":[1,1,1,1,1,1,0,1,0,1],"satisfied_before":5,"satisfied_after":8,"delta_edges":3,"delta_reward":0.3333333333333333,"completion_bonus":0.0,"reward":0.3333333333333333,"score":0.8888888888888888,"remaining_steps_before":2,"raw_action":{"node":8}},{"valid":true,"node":0,"before":[1,1,1,1,1,1,0,1,0,1],"after":[0,1,1,1,1,1,0,1,0,1],"satisfied_before":8,"satisfied_after":7,"delta_edges":-1,"delta_reward":-0.1111111111111111,"completion_bonus":0.0,"reward":-0.1111111111111111,"score":0.7777777777777778,"remaining_steps_before":1,"raw_action":{"node":0}}],"status":"budget_exhausted","final_score":0.7777777777777778,"undo_after_drop":2,"group":"target","origin_task_id":"r1-q0","decision_id":"decision-0"}],"previous_proposal":{"family":"bridge","size":4,"hypothesis":"在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。","prediction":"solved","evidence_episode_ids":["bridge-0"]},"feedback":{"decision_id":"decision-0","proposal":{"family":"bridge","size":4,"hypothesis":"在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。","prediction":"solved","evidence_episode_ids":["bridge-0"]},"prediction_results":{"target":{"hits":0,"episodes":1,"planned":1,"valid":1,"complete":true},"control":{"hits":0,"episodes":0,"planned":0,"valid":0,"complete":false}},"challenger_reward":{"decision_id":"decision-0","source_round":0,"observation_round":0,"planned_round":1,"evaluation_round":1,"status":"scored","reward":1.0,"challenge_reward":1.0,"failures":1,"target_episodes":1,"episode_ids":["r1-q0-e0"],"diagnostic_quality":null,"quality_status":"not_applicable"},"coverage":{"structure_key":"bridge:4","new_target_structure":false},"monitor":[{"solved":0,"budget_exhausted":1,"invalid_action":0,"interrupted":0,"completed":1,"valid":1,"success_rate":0.0,"solver_model":"gpt-5.6-luna","family":"bridge","size":4,"min_flips":5,"all_first_moves_drop":true,"group":"target","planned":1}],"retests":[]}},"output":{"family":"bridge","size":4,"hypothesis":"在所有首步都会掉分的 bridge 任务中，智能体倾向于在掉分后撤销翻转，而不是继续探索新的有效动作。","prediction":"undo_after_drop","evidence_episode_ids":["r1-q0-e0"]}},"solver":{"role":"solver","input":{"episode_id":"r2-q0-e0","task":{"task_id":"r2-q0","edges":[[0,6],[1,9],[2,9],[3,9],[4,6],[5,6],[6,7],[6,9],[8,9]],"initial_colors":[0,0,0,0,0,0,1,0,0,1],"budget":5},"state":{"colors":[0,0,0,0,0,0,1,0,0,1],"score":0.8888888888888888,"remaining_steps":5},"history":[],"reward_contract":{"completion_bonus":1.0,"gamma":1.0}},"output":{"node":6}}}</script>
+<script id="second-outcome" type="application/json">{"episode":{"episode_id":"r2-q0-e0","task_id":"r2-q0","family":"bridge","size":4,"task":{"task_id":"r2-q0","edges":[[0,6],[1,9],[2,9],[3,9],[4,6],[5,6],[6,7],[6,9],[8,9]],"initial_colors":[0,0,0,0,0,0,1,0,0,1],"budget":5},"steps":[{"valid":true,"node":6,"before":[0,0,0,0,0,0,1,0,0,1],"after":[0,0,0,0,0,0,0,0,0,1],"satisfied_before":8,"satisfied_after":5,"delta_edges":-3,"delta_reward":-0.3333333333333333,"completion_bonus":0.0,"reward":-0.3333333333333333,"score":0.5555555555555556,"remaining_steps_before":5,"raw_action":{"node":6}},{"valid":true,"node":6,"before":[0,0,0,0,0,0,0,0,0,1],"after":[0,0,0,0,0,0,1,0,0,1],"satisfied_before":5,"satisfied_after":8,"delta_edges":3,"delta_reward":0.3333333333333333,"completion_bonus":0.0,"reward":0.3333333333333333,"score":0.8888888888888888,"remaining_steps_before":4,"raw_action":{"node":6}},{"valid":true,"node":9,"before":[0,0,0,0,0,0,1,0,0,1],"after":[0,0,0,0,0,0,1,0,0,0],"satisfied_before":8,"satisfied_after":5,"delta_edges":-3,"delta_reward":-0.3333333333333333,"completion_bonus":0.0,"reward":-0.3333333333333333,"score":0.5555555555555556,"remaining_steps_before":3,"raw_action":{"node":9}},{"valid":true,"node":9,"before":[0,0,0,0,0,0,1,0,0,0],"after":[0,0,0,0,0,0,1,0,0,1],"satisfied_before":5,"satisfied_after":8,"delta_edges":3,"delta_reward":0.3333333333333333,"completion_bonus":0.0,"reward":0.3333333333333333,"score":0.8888888888888888,"remaining_steps_before":2,"raw_action":{"node":9}},{"valid":true,"node":6,"before":[0,0,0,0,0,0,1,0,0,1],"after":[0,0,0,0,0,0,0,0,0,1],"satisfied_before":8,"satisfied_after":5,"delta_edges":-3,"delta_reward":-0.3333333333333333,"completion_bonus":0.0,"reward":-0.3333333333333333,"score":0.5555555555555556,"remaining_steps_before":1,"raw_action":{"node":6}}],"status":"budget_exhausted","final_score":0.5555555555555556,"undo_after_drop":2},"evaluation":{"decision_id":"decision-1","source_round":1,"observation_round":1,"planned_round":2,"evaluation_round":2,"status":"scored","reward":1.0,"challenge_reward":1.0,"failures":1,"target_episodes":1,"episode_ids":["r2-q0-e0"],"diagnostic_quality":null,"quality_status":"inconclusive"},"prediction_results":{"target":{"hits":1,"episodes":1,"planned":1,"valid":1,"complete":true},"control":{"hits":0,"episodes":0,"planned":0,"valid":0,"complete":false}}}</script>
+<script>
+const {episodes,proposal}=JSON.parse(document.querySelector('#record').textContent);
+const {challenger,solver}=JSON.parse(document.getElementById('handoff').textContent);
+const visibleEpisodes=challenger.input.episodes,feedback=challenger.input.feedback,second=challenger.output;
+const finalRound=JSON.parse(document.getElementById('second-outcome').textContent);
+episodes.push(finalRound.episode);
+const names=['种子从哪来','种子桥形题','种子链形题','第一次出题','第一次应战','第一次结算','发现什么','针对性出题','检验弱点','第二次结算'];
+const shape={bridge:'桥形题',chain:'链形题'};
+function fraction(units,denom){
+  if(!units)return '0';
+  let a=Math.abs(units),b=denom;
+  while(b){const r=a%b;a=b;b=r}
+  const n=Math.abs(units)/a,d=denom/a;
+  return (units<0?'−':'+')+n+(d===1?'':'/'+d);
+}
+// 每帧对应一条传输；k 是下图此刻已经执行的步数。
+const frames=[];
+function frame(p,e,k,route,node=null){frames.push({p,e,k,route,node})}
+function playSteps(p,e){
+  const steps=episodes[e].steps;
+  for(const [i,step] of steps.entries()){
+    frame(p,e,i,'action',step.node);
+    // 只有下一次 Solver 确实收到更新后的状态，才点亮返回 Solver 的箭头。
+    frame(p,e,i+1,i+1<steps.length?'score':'receipt',step.node);
+  }
+}
+frame(0,0,0,'seed');
+playSteps(1,0);
+frame(2,1,0,'seed');
+playSteps(2,1);
+frame(3,1,5,'feedback');
+frame(3,1,5,'proposal');
+frame(4,2,0,'deliver');
+playSteps(4,2);
+frame(5,2,5,'feedback');
+frame(6,2,5,'feedback');
+frame(7,2,5,'proposal');
+frame(8,3,0,'deliver');
+playSteps(8,3);
+// 最后一帧是验证器处理最后一个收到的动作，独立成章展示结算。
+frames[frames.length-1].p=9;
+const $=id=>document.getElementById(id),svg=$('graph'),ns='http://www.w3.org/2000/svg';
+let idx=0,timer=null;
+function el(tag,attrs,parent=svg,str){let o=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))o.setAttribute(k,v);parent.append(o);if(str!==undefined)o.textContent=str;return o}
+function label(x,y,t,size=16,color='#e1efe6',parent=svg){return el('text',{x,y,'font-size':size,fill:color,'text-anchor':'middle','dominant-baseline':'middle','font-family':'system-ui,sans-serif'},parent,t)}
+function layout(ep){
+  const edges=ep.task.edges,n=ep.task.initial_colors.length,a=Array.from({length:n},()=>[]);
+  for(const [i,j] of edges){a[i].push(j);a[j].push(i)}
+  let xy=[];
+  if(ep.family==='bridge'){
+    const hubs=a.map((v,i)=>v.length>2?i:-1).filter(i=>i>=0);
+    hubs.forEach((h,side)=>{xy[h]=[side?375:215,140];a[h].filter(i=>!hubs.includes(i)).forEach((i,j)=>xy[i]=[side?[389,515,515,389][j]:[201,75,75,201][j],[42,90,198,244][j]])});
+  }else{
+    let node=a.findIndex(v=>v.length===1),prev=-1;
+    for(let j=0;j<n;j++){xy[node]=[60+117*(j<5?j:9-j),j<5?87:194];let next=a[node].find(i=>i!==prev);prev=node;node=next}
+  }return xy;
+}
+function draw(ep,k,parent,selected=k?ep.steps[k-1].node:null){
+  const pos=layout(ep),s=k?ep.steps[k-1]:null,c=s?s.after:ep.task.initial_colors;
+  for(const [a,b] of ep.task.edges){let conflict=c[a]===c[b];el('line',{x1:pos[a][0],y1:pos[a][1],x2:pos[b][0],y2:pos[b][1],stroke:conflict?'#ff937a':'#789e8d','stroke-width':conflict?5:3,'stroke-dasharray':conflict?'8 5':'none'},parent)}
+  pos.forEach(([x,y],i)=>{if(selected===i)el('circle',{cx:x,cy:y,r:25,fill:'none',stroke:'#fff','stroke-width':2,class:'ring'},parent);
+    el('circle',{cx:x,cy:y,r:18,fill:c[i]?'#ffce81':'#98ecd3'},parent);label(x,y+1,i,18,'#102d29',parent)});
+}
+function compareCards(left,right,parent){
+  [left,right].forEach((lines,j)=>{
+    const x=14+322*j,ink=j?'#98ecd3':'#ffce81';
+    el('rect',{x,y:64,width:240,height:150,rx:14,fill:'#183c35',stroke:ink},parent);
+    lines.forEach((line,i)=>label(x+120,99+38*i,line,i===1&&line.length<10?23:16,i===1?ink:'#edf5ed',parent));
+  });
+  el('path',{d:'M255 139H335m-9-7 9 7-9 7',fill:'none',stroke:'#aac7b8','stroke-width':2},parent);
+  el('circle',{cx:254,cy:139,r:4,fill:'#98ecd3',class:'moving-dot'},parent);
+}
+names.forEach((n,p)=>{let b=document.createElement('button');b.textContent=n;b.onclick=()=>jump(frames.findIndex(f=>f.p===p));$('tabs').append(b)});
+// 讲解按钮只在设备已有中文本机语音时出现，动作回放本身不依赖语音。
+const speech=window.speechSynthesis;
+let voice=null,reading=null;
+function loadVoices(){
+  voice=speech.getVoices().find(v=>v.localService&&/^zh([_-]|$)/i.test(v.lang));
+  $('read-scene').hidden=!voice;
+}
+function stopReading(){
+  if(!reading)return;
+  reading=null;
+  speech.cancel();
+  $('read-scene').textContent='听本幕讲解';
+}
+if(speech&&window.SpeechSynthesisUtterance){
+  loadVoices();
+  speech.addEventListener('voiceschanged',loadVoices);
+  $('read-scene').onclick=()=>{
+    if(reading){stopReading();return}
+    jump(idx);
+    const text=$('title').textContent+'。'+$('story').textContent+' '+$('hypothesis').textContent;
+    const utterance=new SpeechSynthesisUtterance(text);
+    utterance.voice=voice;utterance.lang=voice.lang;reading=utterance;
+    $('read-scene').textContent='停止朗读';
+    utterance.onend=utterance.onerror=()=>{if(reading===utterance){reading=null;$('read-scene').textContent='听本幕讲解'}};
+    speech.speak(utterance);
+  };
+}
+function render(){
+ stopReading();
+ const {p,e,k,route,node}=frames[idx],ep=episodes[e],s=k?ep.steps[k-1]:null;
+ const colors=s?s.after:ep.task.initial_colors,edges=ep.task.edges,points=edges.filter(([a,b])=>colors[a]!==colors[b]).length;
+ const n=edges.length,opening=edges.filter(([a,b])=>ep.task.initial_colors[a]!==ep.task.initial_colors[b]).length;
+ const bonus=ep.steps.slice(0,k).reduce((sum,step)=>sum+(step.completion_bonus||0),0);
+ const total=fraction(points-opening+bonus*n,n),stepPay=s?fraction(s.delta_edges+(s.completion_bonus||0)*n,n):'—';
+ let h=k?'解题方翻转 '+s.node+' 号点':'解题方看到的新图';
+ let story=k?(s.delta_edges===0?'这一步配对的线一样多，本步得 0 分。':s.delta_edges>0?'这一步多配对了 '+s.delta_edges+' 条线。':'这一步少配对了 '+(-s.delta_edges)+' 条线。'):'开局九条线里有八条两端不同色。每次翻一个点，试着用五步让九条线全部配对。';
+ let metrics=[['已配对的线',points+'/'+n],['剩余步数',ep.task.budget-k],['本步得分',stepPay],['解题方本题累计',total]];
+ let boardTitle=p===0?'起点相同的两道题':p===3?'前两道题的结果':(e>=2?'出题方选的':'程序给的')+shape[ep.family];
+ let who=p===0?'程序摆题':p===3?'出题方看记录':p===5?'程序记分':'解题方走一步，程序评一步',quote='';
+ svg.replaceChildren();let g=el('g',{class:'phase'});
+ if(p===3){[0,1].forEach((j)=>{const gg=el('g',{transform:'translate('+ (j*288+3)+' 55) scale(.49)'},g);draw(episodes[j],p===0?0:5,gg);label(145+j*288,218,(j?'链形题':'桥形题')+(p===0?'':j?' · 没解开':' · 解开了'),18,'#dcefe4',g)});
+   if(route==='feedback'){
+     h='先把两份答卷交给出题方';story='种子桥形题第一步掉分，解题方接着走，最后成功；种子链形题第二步翻回原处，最终失败。两条走法都是出题方能引用的证据。';
+     metrics=[['桥形题解题得分','+10/9'],['链形题解题得分','0'],['送达','2 条完整轨迹']];
+   }else{
+     h='出题方第一次选桥形题';story='它选择引用成功的桥形题，猜“再来一道也能解开”。它当时没有点出哪一步容易走错，也没有用失败的链形题作为理由。第一次提案在检验能否再成功。';
+     metrics=[['依据',proposal.evidence_episode_ids.join('、')],['选题',shape[proposal.family]],['猜测','能解开']];
+   }
+ }else if(p===0){
+   draw(ep,0,g);h='程序先发第一道桥形题';boardTitle='初始桥形题';story='每次翻一个点，让九条线两端的颜色都不同。两道种子题都由程序给出，让出题方先观察一次成功和一次失败。解题方看到的是题面、得分和剩余步数。';
+   metrics=[['已配对','8/9'],['步数','5'],['额外完成奖','+1']];
+ }else if(p===6){
+   const prior=feedback.challenger_reward,hit=feedback.prediction_results.target;
+   compareCards(['原预测','能解开','命中 0 / 1'],['实际翻转','6 → 6 → 8 → 8 → 0','五步耗尽，两次撤销'],g);
+   boardTitle='反馈里的五步走法';who='出题方读结果';h='它看见自己哪里猜错了';
+   story='看两对动作：先翻 6 又翻 6，接着翻 8 又翻 8。两次都是掉分后马上退回原图，四步就这样用掉了。这个具体动作给了出题方下一轮要检验的线索。这次可引用的完整记录只有这一条。';
+   metrics=[['解题方本题',total],['出题方挑战分',prior.challenge_reward],['猜中次数',hit.hits+'/'+hit.valid]];
+ }else if(p===7){
+   compareCards(['第一次选桥形题','猜它能解开','看的是成功那局'],['第二次仍选桥形题','猜它会翻回去','看的是失败那局'],g);
+   boardTitle='同一种题，换了一个猜法';who='出题方再选题';h='这次只盯一个能看见的动作';
+   story='桥形题的任何第一步都会掉分，正好能让解题方面对上次退回去的处境。出题方继续选桥形，提前登记“掉分后立刻翻回同一个点”。针对性体现在考哪种处境、观察哪个动作，规模仍是十个点。';
+   quote='出题方原话　'+second.hypothesis;
+   metrics=[['引用',second.evidence_episode_ids.join('、')],['新题型',shape[second.family]],['新预测','待检验']];
+ }else{
+   draw(ep,k,g,route==='action'?node:s?.node);
+   if(p===1&&k===1)story='桥形题开头无论翻哪个点都会掉分。这一步从八条配对变成五条，扣 3/9 分。仍有一条四步能走完的解。';
+   if(p===1&&k===5){h='桥形题解开了，额外得 1 分';story='开局八条配对，最后九条全对，比开局多一条，净得 1/9 分。再加完成奖 1 分，这题共得 10/9 分。题是程序给的，出题方还没下场。'}
+   if(p===2&&k===2){h='走回了起点，步数却用掉了';story='解题方连续两次翻 3 号点，把刚才那步撤销了。图还是原来的图，至少需要五步，只剩三步。两步的得分都是零。'}
+   if(p===2&&k===5){h='链形题没解开，共得 0 分';story='五步走完，还是八条配对，和开局一样。净得 0 分，也没有完成奖。两份答卷都已完成，接下来一起送给出题方。'}
+   if(p===4&&k===0){h='出题方选好了，解题方接招';story='程序按它选的桥形摆出新题，换了点的编号。解题方得到新图和五步机会，看不到出题方对它的预测。'}
+   if(p===4&&(k===2||k===4)){h=k===2?'第一次把点翻回去':'第二次把点翻回去';story='刚才少配对的三条线又配对了，所以这一步加 3/9 分，正好抵消上一步。可是图回到了起点，只剩 '+(5-k)+' 步。'}
+   if(p===4&&k===5){h='五步用完，只配对了七条线';story='从开局八条变成七条，少一条，累计扣 1/9 分。没有解开，没有完成奖。现在可以给出题方记分了。'}
+   if(p===5){h='题难住了对手，出题方却猜错了';story='解题方比开局少配对一条线，得 −1/9 分。出题方选的一道题难住了对手，挑战分是 1÷1＝1。它猜“能解开”，实际没解开，猜中 0 次。这次只猜输赢，不算诊断分。';metrics=[['解题方本题',total],['出题方挑战分',feedback.challenger_reward.challenge_reward],['预测猜中','0/1']]}
+   if(p===8){
+     boardTitle='第二次挑战 · 在新桥形题上检验撤销';who='解题方接题';
+     if(!k){h='把同一种难处放进一道新题';story='这道桥形题换了编号，解题方从五步和空历史开始。它看不到“掉分后立刻撤销”的预测，也不会收到出题方的提醒。'}
+     else{
+       const prev=k>1?ep.steps[k-2]:null;
+       const reversed=prev&&prev.delta_edges<0&&prev.node===s.node;
+       if(reversed){h='这一步命中了预先说出的错法';story='上一步翻 '+prev.node+' 号后掉分，这一步马上又翻 '+s.node+' 号。两步互相抵消，在预算恰等于最短解的题上，这次绕回使剩余步数不够用了。'}
+       else if(prev&&prev.delta_edges<0){h='它没有马上撤销';story='上一动作翻 '+prev.node+' 号后掉分，这一步改翻 '+s.node+' 号。对刚才那次掉分，预测中的立即撤销没有发生。'}
+       else if(s.delta_edges<0){h='出现掉分，接下来看它是否翻回';story='它翻了 '+s.node+' 号，配对从 '+s.satisfied_before+' 条变成 '+s.satisfied_after+' 条。如果下一步又翻 '+s.node+' 号，就能在新题上观察到它说的错法。'}
+     }
+   }
+   if(p===9){
+     const outcome=finalRound.evaluation,hit=finalRound.prediction_results.target,solved=ep.status==='solved';
+     const moves=ep.steps.map((x,i)=>i>0&&ep.steps[i-1].delta_edges<0&&ep.steps[i-1].node===x.node?i+1:null).filter(Boolean);
+     h=hit.hits?'第二次猜中了这个动作':'第二次的动作预测没有命中';
+     boardTitle='第二次挑战 · 最终走法';who='验证器结算';
+     story='Solver '+(solved?'完成了全部配对':'五步用完仍未解开')+'，本题得 '+total+' 分。'+(moves.length?'第 '+moves.join('、')+' 步发生了掉分后立即撤销。':'全程没有在掉分后的下一步翻回同一个点。')+'出题方预测命中 '+hit.hits+'/'+hit.valid+'，挑战分 '+outcome.challenge_reward+'。本轮没跑对照题，诊断分暂缺。';
+     quote='第二次出题前就说出了要找的错法，这个错法也在新题上重现了。两道挑战题求解都失败。本次模型权重冻结；后续可以把这些局面拿来训练，再用未见过的题检验它是否进步。';
+     metrics=[['解题方本题',total],['出题方挑战分',outcome.challenge_reward],['预测命中',hit.hits+'/'+hit.valid],['诊断分','缺对照']];
+   }
+
+ }
+ // 上图的消息与下图的状态共享同一帧。发送动作时还没执行，不能提前显示奖励。
+ let packet;
+ if(route==='action'){
+   h='请翻转 '+node+' 号点';story='解题方把选中的编号交给验证器。圆环标出它要翻哪个点；颜色和累计分仍是执行前的值。';
+   metrics=[['当前已配对',points+'/'+n],['待执行','翻 '+node+' 号'],['本步奖励','待计算'],['此前累计',total]];
+   who='解题方发出动作';packet='第 '+(k+1)+' 步 · 翻转 '+node+' 号点';
+ }else if(route==='score'){
+   who='验证结果进入下一步观察';
+   packet='新着色 · 本步 '+stepPay+' 分 · 还可走 '+(ep.task.budget-k)+' 步';
+ }else if(route==='receipt'){
+   who='验证器按收到的动作计分';
+   packet='已收到翻转 '+node+' 号的动作 · 本步 '+stepPay+' · '+(p===9?'第二次挑战已结算':'本题结束');
+ }else if(route==='feedback'){
+   packet=p===3?'桥形和链形两局的完整走法、得分与终局':p===5?'本次反馈的成绩 · 解题方 '+total+' · 挑战分 '+feedback.challenger_reward.challenge_reward+' · 预测 '+feedback.prediction_results.target.hits+'/'+feedback.prediction_results.target.valid:'同一份反馈的轨迹 · '+ep.steps.map(step=>step.node).join(' → ')+' · 两次翻回';
+ }else if(route==='proposal'){
+   const decision=p===3?proposal:second;
+   packet=shape[decision.family]+' · 依据 '+decision.evidence_episode_ids.join('、')+' · 预测'+(decision.prediction==='solved'?'能解开':'掉分后立即翻回');
+ }else{
+   packet='题面 '+ep.task.task_id+' · 初始颜色、9 条连线和 5 步预算';
+ }
+ window.showTransfer(route==='receipt'?'action':route,packet);
+ $('title').textContent=h;$('story').textContent=story;$('phase').textContent=names[p];$('boardTitle').textContent=boardTitle;$('who').textContent=who;
+ $('hypothesis').hidden=!quote;$('hypothesis').textContent=quote;
+ document.querySelector('.legend').hidden=(p===6||p===7);
+ $('score').replaceChildren(...metrics.map(([n,v])=>{let d=document.createElement('div'),a=document.createElement('span'),b=document.createElement('strong');a.textContent=n;b.textContent=v;d.append(a,b);return d}));
+ $('moves').replaceChildren();if(k&&![3,7].includes(p)){$('moves').append('已翻转');ep.steps.slice(0,k).forEach(s=>{let i=document.createElement('i');i.textContent=s.node;$('moves').append(i)})}
+ Array.from($('tabs').children).forEach((b,j)=>b.classList.toggle('active',p===j));
+ $('seek').value=idx;$('count').textContent=(idx+1)+' / '+frames.length;$('back').disabled=!idx;$('next').disabled=idx===frames.length-1;$('play').textContent=timer?'暂停':idx===frames.length-1?'重新播放':'▶ 播放';
+}
+function stop(){clearInterval(timer);timer=null}
+function jump(i){stop();idx=Math.max(0,Math.min(frames.length-1,i));render()}
+function start(){stop();if(idx===frames.length-1)idx=0;timer=setInterval(()=>{idx++;if(idx===frames.length-1)stop();render()},Number($('speed').value));render()}
+$('play').onclick=()=>timer?jump(idx):start();$('back').onclick=()=>jump(idx-1);$('next').onclick=()=>jump(idx+1);
+$('seek').max=frames.length-1;$('seek').oninput=event=>jump(Number(event.target.value));$('speed').onchange=()=>{if(timer)start()};
+document.addEventListener('keydown',ev=>{if(['INPUT','SELECT'].includes(ev.target.tagName)||(ev.key===' '&&['BUTTON','A'].includes(ev.target.tagName)))return;if([' ','ArrowRight','ArrowLeft'].includes(ev.key)){ev.preventDefault();if(ev.key===' ')$('play').click();else jump(idx+(ev.key==='ArrowRight'?1:-1))}});
+render();
+</script></html>

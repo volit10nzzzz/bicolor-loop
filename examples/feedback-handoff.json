@@ -1,0 +1,487 @@
+{
+  "models": {
+    "solver": "gpt-5.6-luna",
+    "challenger": "gpt-5.6-luna"
+  },
+  "calls": [
+    {
+      "role": "challenger",
+      "input": {
+        "decision_id": "decision-1",
+        "planned_round": 2,
+        "round": 1,
+        "fixed_size": 4,
+        "summary": {
+          "bridge": {
+            "mean_score": 0.7777777777777778,
+            "stratum": "middle",
+            "tasks": 1,
+            "episodes": 1,
+            "success_rate": 0.0,
+            "invalid_actions": 0,
+            "undo_after_drop": 2,
+            "solved": 0,
+            "budget_exhausted": 1,
+            "invalid_action": 0,
+            "interrupted": 0,
+            "completed": 1,
+            "valid": 1,
+            "planned": 1
+          }
+        },
+        "episodes": [
+          {
+            "episode_id": "r1-q0-e0",
+            "task_id": "r1-q0",
+            "family": "bridge",
+            "size": 4,
+            "task": {
+              "task_id": "r1-q0",
+              "edges": [
+                [
+                  0,
+                  6
+                ],
+                [
+                  1,
+                  6
+                ],
+                [
+                  2,
+                  8
+                ],
+                [
+                  3,
+                  8
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  6,
+                  8
+                ],
+                [
+                  7,
+                  8
+                ],
+                [
+                  8,
+                  9
+                ]
+              ],
+              "initial_colors": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                0,
+                1
+              ],
+              "budget": 5
+            },
+            "steps": [
+              {
+                "valid": true,
+                "node": 6,
+                "before": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "after": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1
+                ],
+                "satisfied_before": 8,
+                "satisfied_after": 5,
+                "delta_edges": -3,
+                "delta_reward": -0.3333333333333333,
+                "completion_bonus": 0.0,
+                "reward": -0.3333333333333333,
+                "score": 0.5555555555555556,
+                "remaining_steps_before": 5,
+                "raw_action": {
+                  "node": 6
+                }
+              },
+              {
+                "valid": true,
+                "node": 6,
+                "before": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1
+                ],
+                "after": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "satisfied_before": 5,
+                "satisfied_after": 8,
+                "delta_edges": 3,
+                "delta_reward": 0.3333333333333333,
+                "completion_bonus": 0.0,
+                "reward": 0.3333333333333333,
+                "score": 0.8888888888888888,
+                "remaining_steps_before": 4,
+                "raw_action": {
+                  "node": 6
+                }
+              },
+              {
+                "valid": true,
+                "node": 8,
+                "before": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "after": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  1,
+                  1
+                ],
+                "satisfied_before": 8,
+                "satisfied_after": 5,
+                "delta_edges": -3,
+                "delta_reward": -0.3333333333333333,
+                "completion_bonus": 0.0,
+                "reward": -0.3333333333333333,
+                "score": 0.5555555555555556,
+                "remaining_steps_before": 3,
+                "raw_action": {
+                  "node": 8
+                }
+              },
+              {
+                "valid": true,
+                "node": 8,
+                "before": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  1,
+                  1
+                ],
+                "after": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "satisfied_before": 5,
+                "satisfied_after": 8,
+                "delta_edges": 3,
+                "delta_reward": 0.3333333333333333,
+                "completion_bonus": 0.0,
+                "reward": 0.3333333333333333,
+                "score": 0.8888888888888888,
+                "remaining_steps_before": 2,
+                "raw_action": {
+                  "node": 8
+                }
+              },
+              {
+                "valid": true,
+                "node": 0,
+                "before": [
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "after": [
+                  0,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1,
+                  0,
+                  1,
+                  0,
+                  1
+                ],
+                "satisfied_before": 8,
+                "satisfied_after": 7,
+                "delta_edges": -1,
+                "delta_reward": -0.1111111111111111,
+                "completion_bonus": 0.0,
+                "reward": -0.1111111111111111,
+                "score": 0.7777777777777778,
+                "remaining_steps_before": 1,
+                "raw_action": {
+                  "node": 0
+                }
+              }
+            ],
+            "status": "budget_exhausted",
+            "final_score": 0.7777777777777778,
+            "undo_after_drop": 2,
+            "group": "target",
+            "origin_task_id": "r1-q0",
+            "decision_id": "decision-0"
+          }
+        ],
+        "previous_proposal": {
+          "family": "bridge",
+          "size": 4,
+          "hypothesis": "在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。",
+          "prediction": "solved",
+          "evidence_episode_ids": [
+            "bridge-0"
+          ]
+        },
+        "feedback": {
+          "decision_id": "decision-0",
+          "proposal": {
+            "family": "bridge",
+            "size": 4,
+            "hypothesis": "在所有首步都会掉分的 bridge 任务中，智能体能够承受初始损失并继续执行有效翻转，最终完成任务。",
+            "prediction": "solved",
+            "evidence_episode_ids": [
+              "bridge-0"
+            ]
+          },
+          "prediction_results": {
+            "target": {
+              "hits": 0,
+              "episodes": 1,
+              "planned": 1,
+              "valid": 1,
+              "complete": true
+            },
+            "control": {
+              "hits": 0,
+              "episodes": 0,
+              "planned": 0,
+              "valid": 0,
+              "complete": false
+            }
+          },
+          "challenger_reward": {
+            "decision_id": "decision-0",
+            "source_round": 0,
+            "observation_round": 0,
+            "planned_round": 1,
+            "evaluation_round": 1,
+            "status": "scored",
+            "reward": 1.0,
+            "challenge_reward": 1.0,
+            "failures": 1,
+            "target_episodes": 1,
+            "episode_ids": [
+              "r1-q0-e0"
+            ],
+            "diagnostic_quality": null,
+            "quality_status": "not_applicable"
+          },
+          "coverage": {
+            "structure_key": "bridge:4",
+            "new_target_structure": false
+          },
+          "monitor": [
+            {
+              "solved": 0,
+              "budget_exhausted": 1,
+              "invalid_action": 0,
+              "interrupted": 0,
+              "completed": 1,
+              "valid": 1,
+              "success_rate": 0.0,
+              "solver_model": "gpt-5.6-luna",
+              "family": "bridge",
+              "size": 4,
+              "min_flips": 5,
+              "all_first_moves_drop": true,
+              "group": "target",
+              "planned": 1
+            }
+          ],
+          "retests": []
+        }
+      },
+      "output": {
+        "family": "bridge",
+        "size": 4,
+        "hypothesis": "在所有首步都会掉分的 bridge 任务中，智能体倾向于在掉分后撤销翻转，而不是继续探索新的有效动作。",
+        "prediction": "undo_after_drop",
+        "evidence_episode_ids": [
+          "r1-q0-e0"
+        ]
+      }
+    },
+    {
+      "role": "solver",
+      "input": {
+        "episode_id": "r2-q0-e0",
+        "task": {
+          "task_id": "r2-q0",
+          "edges": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              9
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              8,
+              9
+            ]
+          ],
+          "initial_colors": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          "budget": 5
+        },
+        "state": {
+          "colors": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1
+          ],
+          "score": 0.8888888888888888,
+          "remaining_steps": 5
+        },
+        "history": [],
+        "reward_contract": {
+          "completion_bonus": 1.0,
+          "gamma": 1.0
+        }
+      },
+      "output": {
+        "node": 6
+      }
+    }
+  ],
+  "first_step": {
+    "task_id": "r2-q0",
+    "node": 6,
+    "colors_after": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "satisfied_after": 5
+  }
+}

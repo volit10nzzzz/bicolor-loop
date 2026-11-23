@@ -1,0 +1,68 @@
+[
+  {
+    "round": 0,
+    "summary": {
+      "bridge": {
+        "mean_score": 0.6,
+        "stratum": "middle",
+        "tasks": 2,
+        "episodes": 4,
+        "success_rate": 0,
+        "invalid_actions": 0,
+        "undo_after_drop": 4
+      },
+      "chain": {
+        "mean_score": 0.8,
+        "stratum": "middle",
+        "tasks": 1,
+        "episodes": 2,
+        "success_rate": 0,
+        "invalid_actions": 0,
+        "undo_after_drop": 0
+      }
+    },
+    "prediction_results": {
+      "target": {
+        "hits": 4,
+        "episodes": 4
+      },
+      "control": {
+        "hits": 0,
+        "episodes": 2
+      }
+    }
+  },
+  {
+    "round": 1,
+    "summary": {
+      "bridge": {
+        "mean_score": 0.6,
+        "stratum": "middle",
+        "tasks": 2,
+        "episodes": 4,
+        "success_rate": 0,
+        "invalid_actions": 0,
+        "undo_after_drop": 4
+      },
+      "chain": {
+        "mean_score": 1.0,
+        "stratum": "high",
+        "tasks": 1,
+        "episodes": 2,
+        "success_rate": 1,
+        "invalid_actions": 0,
+        "undo_after_drop": 0
+      }
+    },
+    "prediction_results": {
+      "target": {
+        "hits": 4,
+        "episodes": 4
+      },
+      "control": {
+        "hits": 0,
+        "episodes": 2
+      }
+    }
+  }
+]

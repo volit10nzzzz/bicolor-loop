@@ -1,0 +1,23 @@
+{
+  "status": "completed",
+  "evidence_mode": "offline_simulation",
+  "config": {
+    "run": {
+      "mode": "offline",
+      "seed": 42,
+      "rounds": 2,
+      "rollouts_per_task": 2,
+      "initial_size": 2
+    },
+    "api": {
+      "base_url": "https://api.openai.com/v1",
+      "solver_model": "SET_SOLVER_MODEL",
+      "challenger_model": "SET_CHALLENGER_MODEL",
+      "key_env": "BICOLOR_API_KEY",
+      "max_calls": 64,
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 60
+    }
+  },
+  "api_calls": 0
+}
