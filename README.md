@@ -79,3 +79,7 @@ python3 -m unittest discover -s tests -v
 Solver 导出每个有效动作的观察、动作、奖励与下一状态。Challenger 导出每份可评价提案的原始观察、提案、延迟挑战分及单列的诊断分。当前标量奖励采用挑战分。导出结果标记 `optimizer_started: false`。要做策略更新，还需接入本地采样、token 对齐、行为策略概率和相应的训练器。模型学习、抗遗忘和跨题型泛化均待训练验证。[训练数据出口](bicolor/train.py) · [验证记录](docs/validation.md)
 
 项目设计约束由发起者提出，代码与测试使用了 AI 辅助。
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。
